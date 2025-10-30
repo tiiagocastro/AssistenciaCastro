@@ -5,22 +5,21 @@ import br.com.assistenciaCastro.enums.StatusConserto;
 public class VideoGameDTO {
 
     private Integer id;
+    private String nomeCliente;
     private String marca;
     private String modelo;
     private String defeito;
-    private String nomeCliente;
     private StatusConserto status;
 
     public VideoGameDTO() {
     }
 
-    public VideoGameDTO(Integer id, String marca, String modelo, String defeito,
-                        String nomeCliente, StatusConserto status) {
+    public VideoGameDTO(Integer id, String nomeCliente, String marca, String modelo, String defeito, StatusConserto status) {
         this.id = id;
+        this.nomeCliente = nomeCliente;
         this.marca = marca;
         this.modelo = modelo;
         this.defeito = defeito;
-        this.nomeCliente = nomeCliente;
         this.status = status;
     }
 
@@ -30,6 +29,14 @@ public class VideoGameDTO {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getNomeCliente() {
+        return nomeCliente;
+    }
+
+    public void setNomeCliente(String nomeCliente) {
+        this.nomeCliente = nomeCliente;
     }
 
     public String getMarca() {
@@ -56,14 +63,6 @@ public class VideoGameDTO {
         this.defeito = defeito;
     }
 
-    public String getNomeCliente() {
-        return nomeCliente;
-    }
-
-    public void setNomeCliente(String nomeCliente) {
-        this.nomeCliente = nomeCliente;
-    }
-
     public StatusConserto getStatus() {
         return status;
     }
@@ -71,5 +70,4 @@ public class VideoGameDTO {
     public void setStatus(StatusConserto status) {
         this.status = status;
     }
-
 }

@@ -10,18 +10,15 @@ public class ClienteDTO {
     private String nome;
     private String telefone;
     private String email;
-    private List<VideoGameDTO> videoGameDTOList = new ArrayList<>();
 
     public ClienteDTO() {
-
     }
 
-    public ClienteDTO(Integer id, String nome, String telefone, String email, List<VideoGameDTO> videoGameDTOList) {
+    public ClienteDTO(Integer id, String nome, String telefone, String email) {
         this.id = id;
         this.nome = nome;
         this.telefone = telefone;
         this.email = email;
-        this.videoGameDTOList = videoGameDTOList;
     }
 
     public Integer getId() {
@@ -54,13 +51,5 @@ public class ClienteDTO {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public List<VideoGameDTO> getVideoGameDTOList() {
-        return videoGameDTOList;
-    }
-
-    public void setVideoGameDTOList(List<VideoGameDTO> videoGameDTOList) {
-        this.videoGameDTOList = videoGameDTOList;
     }
 }

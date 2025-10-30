@@ -3,12 +3,10 @@ package br.com.assistenciaCastro.services;
 import br.com.assistenciaCastro.exceptions.ObjectNotFoundExceptions;
 import br.com.assistenciaCastro.models.VideoGame;
 import br.com.assistenciaCastro.repositories.VideoGameRepository;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class VideoGameService {
@@ -17,11 +15,8 @@ public class VideoGameService {
     private VideoGameRepository videoGameRepository;
 
     public VideoGame findById(Integer id) {
-        Optional<VideoGame> videoGame = videoGameRepository.findById(id);
-        if (videoGame.isPresent()) {
-            return videoGame.get();
-        }
-        throw new ObjectNotFoundExceptions("Video game não encontrado com o id" + id);
+        return videoGameRepository.findById(id).orElseThrow(() ->
+                new ObjectNotFoundExceptions("Video game não encontrado com o id" + id));
     }
 
     public List<VideoGame> findAll() {

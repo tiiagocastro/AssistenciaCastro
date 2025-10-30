@@ -1,7 +1,9 @@
 package br.com.assistenciaCastro.controllers;
 
 import br.com.assistenciaCastro.dtos.ClienteDTO;
+import br.com.assistenciaCastro.dtos.VideoGameDTO;
 import br.com.assistenciaCastro.models.Cliente;
+import br.com.assistenciaCastro.models.VideoGame;
 import br.com.assistenciaCastro.services.ClienteService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +42,17 @@ public class ClienteController {
             listDto.add(modelMapper.map(cliente, ClienteDTO.class));
         }
         return ResponseEntity.ok().body(listDto);
+    }
+
+    @GetMapping ("/{id}/videogames")
+    public ResponseEntity<List<VideoGameDTO>> findVideoGameByCliente(@PathVariable Integer id){
+        List<VideoGame> videoGames = clienteService.findVideoGameByCliente(id);
+        List<VideoGameDTO> dtoList = new ArrayList<>();
+        for (VideoGame vg : videoGames){
+            VideoGameDTO videoGameDTO = modelMapper.map(vg, VideoGameDTO.class);
+            dtoList.add(videoGameDTO);
+        }
+        return ResponseEntity.ok(dtoList);
     }
 
     @PostMapping

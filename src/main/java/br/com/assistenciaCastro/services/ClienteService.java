@@ -2,10 +2,10 @@ package br.com.assistenciaCastro.services;
 
 import br.com.assistenciaCastro.exceptions.ObjectNotFoundExceptions;
 import br.com.assistenciaCastro.models.Cliente;
+import br.com.assistenciaCastro.models.VideoGame;
 import br.com.assistenciaCastro.repositories.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 
 import java.util.List;
 import java.util.Optional;
@@ -17,15 +17,19 @@ public class ClienteService {
     private ClienteRepository clienteRepository;
 
     public Cliente findById(Integer id) {
-        Optional<Cliente> cliente = clienteRepository.findById(id);
-        if (cliente.isPresent()) {
-            return cliente.get();
-        }
-        throw new ObjectNotFoundExceptions("Cliente não encontrado com o id" + id);
+        return clienteRepository.findById(id).orElseThrow(() ->
+                new ObjectNotFoundExceptions("Cliente não encontrado com o id" + id));
     }
 
     public List<Cliente> findAll() {
+
         return clienteRepository.findAll();
+    }
+
+    public List<VideoGame> findVideoGameByCliente(Integer clienteId) {
+        Cliente cliente = clienteRepository.findById(clienteId).orElseThrow(() ->
+                new RuntimeException("Cliente não encontrado com esse id. " + clienteId));
+        return cliente.getVideoGames();
     }
 
     public Cliente update(Cliente cliente, Integer id) {
